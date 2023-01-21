@@ -1,0 +1,9 @@
+<mat-selection-list #groceries>
+    <mat-list-option *ngFor="let grocery of groceryList" checkboxPosition="before">
+        {{grocery}}
+    </mat-list-option>
+</mat-selection-list>
+
+<button mat-raised-button color="warn">
+    <mat-icon>highlight_remove</mat-icon> Remove Items
+</button>
