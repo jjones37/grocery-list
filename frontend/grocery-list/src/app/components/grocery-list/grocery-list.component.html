@@ -1,6 +1,6 @@
 <mat-selection-list #groceries>
     <mat-list-option *ngFor="let grocery of groceryList | async" checkboxPosition="before">
-        {{grocery}}
+        {{grocery.name}}
     </mat-list-option>
 </mat-selection-list>
 

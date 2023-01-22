@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "P6TDaM/tyBl6rlVV3BkKqKkVTv5aQ/+KYgMYmt/EuQAlkIU2dZftzm3SbnDTBcCIEqx8VjW0Bbxtw3F+/xJsyg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\csmaj\\source\\repos\\grocery-list\\backend\\GroceryListAPI\\GroceryListAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\csmaj\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\csmaj\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\csmaj\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\csmaj\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\csmaj\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\csmaj\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -9,13 +9,13 @@ import { Grocery } from '../objects/Grocery';
   providedIn: 'root',
 })
 export class GroceryListService {
-  private readonly apiUrl = environment.apiUrl;
+  private readonly apiUrl = `${environment.apiUrl}/Grocery`;
 
   constructor(private httpClient: HttpClient) {}
 
-  public get(): Observable<Grocery[]> {
+  public getGroceryList(): Observable<Grocery[]> {
     return this.httpClient
-      .get<Grocery[]>(`${this.apiUrl}/`)
+      .get<Grocery[]>(`${this.apiUrl}/GroceryList`)
       .pipe(catchError(this.handleError));
   }
 
