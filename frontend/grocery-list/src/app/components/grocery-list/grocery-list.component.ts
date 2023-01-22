@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Grocery } from 'src/app/objects/Grocery';
 import { GroceryListService } from 'src/app/services/grocery.service';
 
@@ -15,5 +15,16 @@ export class GroceryListComponent implements OnInit {
 
   ngOnInit(): void {
     this.groceryList = this.groceryService.getAll();
+  }
+
+  removeGrocery(id: number): void {
+    this.groceryService
+      .delete(id)
+      .pipe(
+        tap(() => {
+          this.groceryService.refresh();
+        })
+      )
+      .subscribe();
   }
 }

@@ -35,6 +35,10 @@ export class GroceryListService {
       .pipe(catchError(this.handleError));
   }
 
+  delete(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
   refresh(): void {
     this.stream.next();
   }

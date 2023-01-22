@@ -31,5 +31,14 @@ namespace GroceryListAPI.Controllers
             groceryList.Add(grocery);
             return Ok(groceryList);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<Grocery>>> Delete(int id)
+        {
+            var grocery = groceryList.Find(g => g.Id == id);
+            if (grocery == null) return BadRequest("Grocery item not found");
+            groceryList.Remove(grocery);
+            return Ok();
+        }
     }
 }
