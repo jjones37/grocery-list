@@ -6,39 +6,40 @@ namespace GroceryListAPI.Controllers
     [Route("api/[controller]")]
     public class GroceryController : ControllerBase
     {
-        private static List<Grocery> groceryList = new List<Grocery>
-            {
-                new Grocery {Id = 1, Name = "Apple"},
-                new Grocery {Id = 2, Name = "Banana"}
-            };
 
-        private readonly ILogger<GroceryController> _logger;
+        private readonly DataContext _context;
 
-        public GroceryController(ILogger<GroceryController> logger)
+        public GroceryController(DataContext context
+            )
         {
-            _logger = logger;
+            _context = context;
         }
 
         [HttpGet("GroceryList")]
         public async Task<ActionResult<List<Grocery>>> Get()
         {
-            return Ok(groceryList);
+            return Ok(await _context.Groceries.ToListAsync());
         }
 
         [HttpPost]
         public async Task<ActionResult<List<Grocery>>> AddGrocery(Grocery grocery)
         {
-            groceryList.Add(grocery);
-            return Ok(groceryList);
+            _context.Groceries.Add(grocery);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Groceries.ToListAsync());
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<Grocery>>> Delete(int id)
         {
-            var grocery = groceryList.Find(g => g.Id == id);
+            var grocery = await _context.Groceries.FindAsync(id);
             if (grocery == null) return BadRequest("Grocery item not found");
-            groceryList.Remove(grocery);
-            return Ok();
+
+            _context.Groceries.Remove(grocery);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Groceries.ToListAsync());
         }
     }
 }
