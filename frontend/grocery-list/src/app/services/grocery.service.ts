@@ -1,6 +1,12 @@
 import { _isTestEnvironment } from '@angular/cdk/platform';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  Observable,
+  switchMap,
+  throwError,
+} from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { Grocery } from '../objects/Grocery';
@@ -10,17 +16,31 @@ import { Grocery } from '../objects/Grocery';
 })
 export class GroceryListService {
   private readonly apiUrl = `${environment.apiUrl}/Grocery`;
+  private stream = new BehaviorSubject<void>(undefined);
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(protected httpClient: HttpClient) {}
 
-  public getGroceryList(): Observable<Grocery[]> {
+  getAll(): Observable<Grocery[]> {
+    return this.stream.asObservable().pipe(
+      switchMap(() =>
+        this.httpClient.get<Grocery[]>(`${this.apiUrl}/GroceryList`)
+      ),
+      catchError(this.handleError)
+    );
+  }
+
+  create(grocery: String): Observable<Grocery> {
     return this.httpClient
-      .get<Grocery[]>(`${this.apiUrl}/GroceryList`)
+      .post<Grocery>(`${this.apiUrl}`, { name: grocery })
       .pipe(catchError(this.handleError));
   }
 
+  refresh(): void {
+    this.stream.next();
+  }
+
   // Handle API errors
-  public handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {

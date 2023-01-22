@@ -1,10 +1,10 @@
 <form class="form">
     <mat-form-field class="full-width">
         <mat-label>Grocery Item</mat-label>
-        <input matInput>
+        <input matInput name="groceryItem" [(ngModel)]="groceryItem">
         <mat-hint>Input grocery item here</mat-hint>
     </mat-form-field>
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" (click)="addGrocery()">
         <mat-icon>add</mat-icon> Add Item
     </button>
 </form>
