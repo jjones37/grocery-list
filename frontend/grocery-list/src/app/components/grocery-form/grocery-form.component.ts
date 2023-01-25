@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { take, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { GroceryListService } from 'src/app/services/grocery.service';
 
 @Component({
