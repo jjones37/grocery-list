@@ -1,15 +1,26 @@
+import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { MatDividerModule } from '@angular/material/divider';
 import { AppComponent } from './app.component';
+
+@Component({ selector: 'nav-bar' })
+class NavBarComponent {}
+
+@Component({ selector: 'grocery-form' })
+class GroceryFormComponent {}
+
+@Component({ selector: 'grocery-list' })
+class GroceryListComponent {}
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
+      imports: [MatDividerModule],
       declarations: [
-        AppComponent
+        AppComponent,
+        NavBarComponent,
+        GroceryFormComponent,
+        GroceryListComponent,
       ],
     }).compileComponents();
   });
@@ -18,18 +29,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'grocery-list'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('grocery-list');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('grocery-list app is running!');
   });
 });
