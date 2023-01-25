@@ -13,10 +13,12 @@ export class GroceryListComponent implements OnInit {
 
   constructor(private groceryService: GroceryListService) {}
 
+  //On load gets a list of all of the groceries
   ngOnInit(): void {
     this.groceryList = this.groceryService.getAll();
   }
 
+  //Removes groceries based on button clicked
   removeGrocery(id: number): void {
     this.groceryService
       .delete(id)

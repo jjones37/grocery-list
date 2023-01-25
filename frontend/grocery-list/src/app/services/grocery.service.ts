@@ -19,6 +19,7 @@ export class GroceryListService {
 
   constructor(protected httpClient: HttpClient) {}
 
+  //Gets a list of Groceries
   getAll(): Observable<Grocery[]> {
     return this.stream.asObservable().pipe(
       switchMap(() =>
@@ -28,16 +29,19 @@ export class GroceryListService {
     );
   }
 
+  //Creates a new Grocery
   create(grocery: String): Observable<Grocery> {
     return this.httpClient
       .post<Grocery>(`${this.apiUrl}`, { name: grocery })
       .pipe(catchError(this.handleError));
   }
 
+  //Deletes an existing grocery
   delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  //Refreshes data stream for the getAll request
   refresh(): void {
     this.stream.next();
   }

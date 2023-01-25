@@ -12,6 +12,7 @@ export class GroceryFormComponent {
 
   constructor(private groceryService: GroceryListService) {}
 
+  //Adds a new grocery to the list
   public async addGrocery(): Promise<void> {
     this.groceryService
       .create(this.groceryItem)
